@@ -177,3 +177,33 @@ moviePublicationDate: '2001-12-19',
 pages: 1210,
 }
 
+///// Template literals
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate.split('-')[0]}`;
+
+///// Ternaries insted of if/else statements
+const pagesRange = pages > 1000 ? 'over a thounsand' : 'less than 1000';
+
+///// Arrow functions
+function getYear(str) {
+  return str.split('-')[0];
+}
+
+const getYear = (str) => str.split[0];
+
+// if the code inside arrow fucntion is bigger
+const longFunction = (arg) => {
+  //code
+
+  return // code;
+}
+
+///// Short-circuiting and logical operators: &&, ||, ??
+// If the lefr part is true, then we return/execute right part
+console.log(true && 'Some string');
+console.log(true || 'Some string'); // works the sames as &&
+console.log(book.translations.spanish); // => undefined;
+const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED';
+
+const count = book.reviews.librarything.reviewsCount ?? 'no data';
+// if we use ||, then the count will be 'no data' because the value is 0 and its falsy value, but if we want o to be shown then we can use new operator ??
+
