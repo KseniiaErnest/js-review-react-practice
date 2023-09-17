@@ -207,3 +207,35 @@ const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED';
 const count = book.reviews.librarything.reviewsCount ?? 'no data';
 // if we use ||, then the count will be 'no data' because the value is 0 and its falsy value, but if we want o to be shown then we can use new operator ??
 
+///// Optional chaining operator
+function getTotalReviewCount(book) {
+const goodread = book.reviews.goodreads.reviewsCount;
+const librarything = book.reviews.librarything.reviewsCount;
+
+return goodread + librarything;
+}
+
+// It will calculate, if there is a value, but if undefined (for example, there is no librarything) that we will get an error;
+// Solution: option chaining =>
+function getTotalReviewCount(book) {
+  const goodread = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  // So if book.reviews.librarything undefined, then JS will not try reading the book.reviews.librarything
+  
+  return goodread + librarything;
+  }
+
+  ///// The Array map method (do not mutate the original array, instead returns new one)
+  // The map method will loop over an array and return the new array with the same length and with some operation applied to each of the elements of the original array.
+  const books = getBooks();
+
+  const titles = books.map((book) => book.title);
+  const essentialData = books.map((book) => ({
+      title: book.title,
+      author: book.author,
+  }));
+
+///// The Array filter method (do not mutate the original array, instead returns new one)
+const longBooksWithMovie = books.filter((book) => book.pages > 500).filter((book) => book.hasMovieAdaptation);
+
+const adventureBooks = books.filter((book) => book.genres.includes('adventure')).map((book) => book.title);
