@@ -268,3 +268,17 @@ const bookAfterDelete = booksAfterAdd.filter(book => book.id !== 3);
 const booksAfterUpdate = booksAfterDelete.map(book => 
   book.id === 1 ? {...book, pages: 1210} : book
   );
+
+
+///// Asyncronous JavaScript: Promises
+fetch(someURL) // Promise(pending)
+.then(res => res.json()) //It will return another Promise
+.then(data => console.log(data))
+
+///// Async/Await
+async function getTodos() {
+const res = await fetch(someURL);
+const data = await(res.json());
+console.log(data);
+}
+getTodos();
