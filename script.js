@@ -239,3 +239,32 @@ function getTotalReviewCount(book) {
 const longBooksWithMovie = books.filter((book) => book.pages > 500).filter((book) => book.hasMovieAdaptation);
 
 const adventureBooks = books.filter((book) => book.genres.includes('adventure')).map((book) => book.title);
+
+///// Reduce method
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+
+
+///// Sort method (it mutates the original array, and to avoid it, we can copy the original array with .slice());
+const x = [3, 7, 1, 9, 6];
+const sorted = x.slice().sort((a, b) => a - b);
+
+///// Workin with immutable Arrays
+/// Its important to add, delete, update elements in React without mutating the original array.
+
+// 1. Add book object to array
+const newBook = {
+  id: 6,
+  title: 'Harry Potter and the Chamber of Secrets',
+  author: 'J. K. Rowling',
+};
+
+const booksAfterAdd = [...books, newBook];
+
+// 2. Delete book object from array
+const bookAfterDelete = booksAfterAdd.filter(book => book.id !== 3);
+
+
+// 3. Update book object in the array (we choose map method to update on element inside the array)
+const booksAfterUpdate = booksAfterDelete.map(book => 
+  book.id === 1 ? {...book, pages: 1210} : book
+  );
